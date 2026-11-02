@@ -50,4 +50,6 @@ The API and COBOL program exchange one fixed-width input record per catalog prod
 
 ## Hosting
 
-The app can be shared from a running Codespace by making forwarded port `4173` public. This URL works only while that Codespace is running. GitHub Pages cannot host the full app because it does not run the Node API or GnuCOBOL process; use a container host for a persistent public deployment.
+The student lesson is a static site published from `docs/` with GitHub Pages. After the `Publish student lesson` workflow completes, open `https://emaximus21.github.io/CobolwithUI_Coffeestore/`.
+
+GitHub Pages does not run the Node API or GnuCOBOL process. The lesson therefore links to GitHub Codespaces for the full interactive app, which students can run in a browser with no local editor installation. A public Codespaces port is temporary and only works while that Codespace is running.
