@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f3eb">
+    <title>Corner Shop | Browser Preview</title>
+    <link rel="stylesheet" href="shop-base.css">
+    <link rel="stylesheet" href="shop-preview.css">
+    <script src="shop-preview.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar shop-topbar">
+      <a class="wordmark" href="./" aria-label="Back to Corner Shop Code Class"><span class="mark">C</span>corner shop</a>
+      <a class="back-link" href="./">Back to the lesson <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main class="shop-main">
+      <div class="static-preview" role="note">
+        <span aria-hidden="true">🧪</span>
+        <p><strong>GitHub Pages browser demo</strong> This preview uses JavaScript in your browser for checkout. In the full Codespaces project, Node sends orders to the compiled COBOL program.</p>
+        <a href="https://codespaces.new/emaximus21/CobolwithUI_Coffeestore?quickstart=1" target="_blank" rel="noreferrer">Open the COBOL-backed app ↗</a>
+      </div>
+
+      <section class="intro shop-intro" aria-labelledby="page-title">
+        <h1 id="page-title">The daily<br>cupboard.</h1>
+      </section>
+
+      <section class="sales-summary" aria-label="Preview sales summary">
+        <div class="sales-total"><strong id="items-sold">0</strong><span>Items sold in this demo</span></div>
+        <p>Try a checkout, then reset stock to start again.</p>
+      </section>
+
+      <div class="shop-layout">
+        <section class="catalog" aria-labelledby="catalog-title">
+          <div class="section-heading">
+            <div>
+              <h2 id="catalog-title">On the shelf</h2>
+              <span>THREE EVERYDAY FAVORITES</span>
+            </div>
+            <button id="reset-stock" class="reset-button" type="button">Reset stock</button>
+          </div>
+          <div id="reset-status" class="reset-status" role="status" aria-live="polite"></div>
+          <div id="product-list" class="product-list"></div>
+        </section>
+
+        <aside class="basket" aria-labelledby="basket-title">
+          <div class="basket-heading">
+            <h2 id="basket-title">Your basket</h2>
+            <span id="basket-count" class="basket-count">0</span>
+          </div>
+          <div id="basket-items" class="basket-items"><p class="empty-state">Your basket is empty.</p></div>
+          <div class="basket-total"><span>Estimated total</span><strong id="basket-total">$0.00</strong></div>
+          <button id="place-order" class="order-button" type="button" disabled>Place order <span aria-hidden="true">→</span></button>
+          <p class="basket-footnote">Adding to the basket does not reduce stock.</p>
+          <div id="checkout-message" class="checkout-message" role="status" aria-live="polite"></div>
+          <section id="receipt" class="receipt" aria-live="polite" hidden>
+            <div class="receipt-rule"></div>
+            <p class="eyebrow">PREVIEW ORDER</p>
+            <h3>Order complete.</h3>
+            <div id="receipt-items"></div>
+            <div class="receipt-total"><span>Total</span><strong id="receipt-total"></strong></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="shop-footer">
+      <span>JAVASCRIPT BROWSER PREVIEW</span>
+      <a href="./">Continue the lesson →</a>
+    </footer>
+  </body>
+</html>
