@@ -175,7 +175,6 @@ placeOrderButton.addEventListener('click', () => {
   }));
   document.querySelector('#receipt-total').textContent = formatMoney(totalCents);
   receipt.hidden = false;
-  checkoutMessage.textContent = 'Browser preview only: this order was calculated in JavaScript, not sent to COBOL.';
   ordering = false;
   render();
 });
