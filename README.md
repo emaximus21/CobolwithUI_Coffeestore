@@ -12,11 +12,20 @@ This is a demo only. It has no payment processing, customer accounts, or persona
 
 You do not need to install Visual Studio, Node.js, or COBOL on your computer. Work in GitHub Codespaces in your browser.
 
-1. **Make your own copy:** open this repository and click **Fork**. This creates your personal copy. You do not need to run `git pull` or `git clone`.
-2. **Open your copy:** on your fork, click **Code → Codespaces → Create codespace on main**.
-3. **Wait for setup:** Codespaces installs Node.js and GnuCOBOL and compiles the COBOL checkout program automatically.
-4. **Start the shop:** in the Codespaces terminal, run `npm start`.
-5. **Open the website:** select the forwarded port labeled **Corner Shop** or open port `4173` from the Ports tab.
+**First, the three GitHub words:**
+
+- **Fork** means make your own copy of this project in your GitHub account.
+- **Codespaces** is an online coding workspace that opens in your browser.
+- **Pull** means get newer changes into a copy you already have. You do not need to pull to start.
+
+**Do these steps in order:**
+
+1. Open the [project repository](https://github.com/emaximus21/CobolwithUI_Coffeestore).
+2. Click **Fork** near the top-right, then click **Create fork**. You now have your own copy.
+3. Open your new fork. Click **Code → Codespaces → Create codespace on main**. Make sure you are on your fork, not the original repository.
+4. Wait for setup to finish. It installs Node.js and GnuCOBOL and compiles the COBOL program automatically.
+5. In the Codespaces terminal, type `npm start` and press Enter.
+6. Open port `4173` when Codespaces offers it, or select port `4173` in the **Ports** tab.
 
 The hosted [lesson](https://emaximus21.github.io/CobolwithUI_Coffeestore/) and [browser shop preview](https://emaximus21.github.io/CobolwithUI_Coffeestore/shop.html) are optional. GitHub Pages cannot run the Node API or COBOL, so use your Codespace for the real checkout.
 
@@ -29,8 +38,6 @@ npm run build:cobol
 ```
 
 Then restart the app with `npm start`. Check `GET /api/status` to confirm that the compiled COBOL program is connected. If `cobc` is missing, use **Codespaces: Rebuild Container** from the Command Palette.
-
-If the initial build says `cobc` is missing, rebuild the Codespace container so `.devcontainer/Dockerfile` can install GnuCOBOL. On Ubuntu, the equivalent install command is `sudo apt-get update && sudo apt-get install -y gnucobol`, followed by `npm run build:cobol`.
 
 ## Classroom Stages
 
