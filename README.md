@@ -25,7 +25,7 @@ If the initial build says `cobc` is missing, rebuild the Codespace container so 
 
 1. **UI:** work in `index.html`, `styles.css`, and `app.js`. The browser loads products from the API, keeps basket changes local, and submits the basket only when Place order is selected. Opening `index.html` directly is a labeled browser-only preview; its checkout is disabled.
 2. **API:** work in `server.js`. The Node server binds to `0.0.0.0:4173`, serves the UI, validates the request shape, and passes the current catalog, stock, and quantities to the COBOL executable. It updates stock only after a valid COBOL result.
-3. **COBOL:** first run `lessons/first-order.cbl` by itself in [OnlineGDB](https://www.onlinegdb.com/online_cobol_compiler). It prompts for a product and quantity, retries a quantity that exceeds stock, and loops back to the menu with updated stock. Then work in `backend/shop.cbl` to see the same checkout rules receive records from the API instead of keyboard input. Rebuild the website program with `npm run build:cobol`.
+3. **COBOL:** work in `backend/shop.cbl`. It validates order quantities against stock, rejects an oversell, calculates remaining stock and total cents, and writes a machine-readable result for the API. Rebuild with `npm run build:cobol`.
 
 ## Catalog
 
@@ -50,6 +50,6 @@ The API and COBOL program exchange one fixed-width input record per catalog prod
 
 ## Hosting
 
-The student lesson and browser shop preview are static pages published from `docs/` with GitHub Pages. Open `https://emaximus21.github.io/CobolwithUI_Coffeestore/` for the lesson or `https://emaximus21.github.io/CobolwithUI_Coffeestore/shop.html` to try the shop UI.
+The student lesson and browser shop preview are published from the `gh-pages` branch. Open `https://emaximus21.github.io/CobolwithUI_Coffeestore/` for the lesson or `https://emaximus21.github.io/CobolwithUI_Coffeestore/shop.html` to try the shop UI.
 
-The Pages shop is clearly labeled as a browser-only JavaScript preview. GitHub Pages does not run the Node API or GnuCOBOL process. The full project in Codespaces uses Node and the compiled COBOL backend; students can start it in their browser with no local editor installation. A public Codespaces port is temporary and only works while that Codespace is running.
+The default `main` branch contains the Codespaces project only. The `gh-pages` branch contains the learning site, keeping the project workspace uncluttered in the same repository. The Pages shop is a browser-only JavaScript preview; GitHub Pages does not run the Node API or GnuCOBOL process. For real COBOL checkout, students should fork this repository and open `main` in Codespaces. A GitHub account is required, and Codespaces usage limits may apply.
