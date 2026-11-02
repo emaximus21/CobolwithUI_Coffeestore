@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f6f3eb">
-    <title>Corner Shop | Browser Preview</title>
+    <title>Corner Shop</title>
     <link rel="stylesheet" href="shop-base.css">
     <link rel="stylesheet" href="shop-preview.css">
     <script src="shop-preview.js" defer></script>
@@ -16,18 +16,12 @@
     </header>
 
     <main class="shop-main">
-      <div class="static-preview" role="note">
-        <span aria-hidden="true">🧪</span>
-        <p><strong>GitHub Pages browser demo</strong> This preview uses JavaScript in your browser for checkout. In the full Codespaces project, Node sends orders to the compiled COBOL program.</p>
-        <a href="https://codespaces.new/emaximus21/CobolwithUI_Coffeestore?quickstart=1" target="_blank" rel="noreferrer">Open the COBOL-backed app ↗</a>
-      </div>
-
       <section class="intro shop-intro" aria-labelledby="page-title">
         <h1 id="page-title">The daily<br>cupboard.</h1>
       </section>
 
-      <section class="sales-summary" aria-label="Preview sales summary">
-        <div class="sales-total"><strong id="items-sold">0</strong><span>Items sold in this demo</span></div>
+      <section class="sales-summary" aria-label="Shop sales summary">
+        <div class="sales-total"><strong id="items-sold">0</strong><span>Total items sold</span></div>
         <p>Try a checkout, then reset stock to start again.</p>
       </section>
 
@@ -56,7 +50,7 @@
           <div id="checkout-message" class="checkout-message" role="status" aria-live="polite"></div>
           <section id="receipt" class="receipt" aria-live="polite" hidden>
             <div class="receipt-rule"></div>
-            <p class="eyebrow">PREVIEW ORDER</p>
+            <p class="eyebrow">ORDER CONFIRMED</p>
             <h3>Order complete.</h3>
             <div id="receipt-items"></div>
             <div class="receipt-total"><span>Total</span><strong id="receipt-total"></strong></div>
@@ -66,7 +60,6 @@
     </main>
 
     <footer class="shop-footer">
-      <span>JAVASCRIPT BROWSER PREVIEW</span>
       <a href="./">Continue the lesson →</a>
     </footer>
   </body>
