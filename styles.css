@@ -110,6 +110,8 @@ h1 em { color: var(--leaf); font-weight: 500; }
 .challenge-section { display: grid; grid-template-columns: minmax(0, 1fr) minmax(270px, 0.85fr); align-items: center; gap: 52px; padding: 75px 0; }
 .challenge-copy > p:not(.eyebrow):not(.small-note) { max-width: 470px; margin-bottom: 20px; color: #586054; font-size: 13px; line-height: 1.7; }
 .small-note { margin: 10px 0 0; color: var(--muted); font-size: 10px; }
+.student-terms { max-width: 470px; margin: 0 0 18px; padding: 11px 13px; border-left: 3px solid var(--leaf); background: #edf2ce; color: #48533e; font-size: 11px; line-height: 1.6; }
+.student-terms b { color: #293d2d; }
 .repo-card { padding: 19px; border: 1px solid var(--line); border-radius: 3px; background: #fffef9; transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease; }
 .repo-card:hover, .repo-card:focus-within { transform: translateY(-3px); border-color: var(--leaf); box-shadow: 5px 5px 0 var(--lime); }
 .repo-card summary { display: grid; grid-template-columns: 36px 1fr; gap: 6px 12px; align-items: center; cursor: pointer; list-style: none; }
