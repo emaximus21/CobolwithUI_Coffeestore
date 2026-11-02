@@ -50,6 +50,6 @@ The API and COBOL program exchange one fixed-width input record per catalog prod
 
 ## Hosting
 
-The student lesson is a static site published from `docs/` with GitHub Pages. After the `Publish student lesson` workflow completes, open `https://emaximus21.github.io/CobolwithUI_Coffeestore/`.
+The student lesson and browser shop preview are static pages published from `docs/` with GitHub Pages. Open `https://emaximus21.github.io/CobolwithUI_Coffeestore/` for the lesson or `https://emaximus21.github.io/CobolwithUI_Coffeestore/shop.html` to try the shop UI.
 
-GitHub Pages does not run the Node API or GnuCOBOL process. The lesson therefore links to GitHub Codespaces for the full interactive app, which students can run in a browser with no local editor installation. A public Codespaces port is temporary and only works while that Codespace is running.
+The Pages shop is clearly labeled as a browser-only JavaScript preview. GitHub Pages does not run the Node API or GnuCOBOL process. The full project in Codespaces uses Node and the compiled COBOL backend; students can start it in their browser with no local editor installation. A public Codespaces port is temporary and only works while that Codespace is running.

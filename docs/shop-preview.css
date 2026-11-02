@@ -1,0 +1,37 @@
+.header-nav { display: flex; align-items: center; gap: 20px; }
+.header-shop-link { padding: 8px 11px; border: 1px solid var(--leaf); border-radius: 3px; color: var(--leaf-dark); font-size: 11px; font-weight: 700; text-decoration: none; }
+.header-shop-link:hover { color: white; background: var(--leaf); }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 17px; }
+.hero-shop-link { color: var(--leaf-dark); font-size: 12px; font-weight: 700; text-underline-offset: 4px; }
+
+.shop-main { padding-top: 20px; }
+.shop-topbar .back-link { color: var(--leaf-dark); font-size: 11px; font-weight: 600; text-decoration: none; }
+.shop-topbar .back-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.static-preview { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 13px 15px; border: 1px solid #d2d998; border-radius: 3px; background: #edf2ce; }
+.static-preview > span { font-size: 18px; }
+.static-preview p { margin: 0; color: #48533e; font-size: 11px; line-height: 1.5; }
+.static-preview p strong { margin-right: 5px; color: #293d2d; }
+.static-preview > a { color: var(--leaf-dark); font-size: 10px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.shop-intro { min-height: 170px; }
+.shop-intro h1 { font-size: 48px; }
+.reset-status { min-height: 0; color: var(--leaf-dark); font-size: 11px; }
+.reset-status:not(:empty) { padding-top: 10px; }
+.preview-shop-message { margin-top: 9px; color: var(--leaf-dark); font-size: 10px; line-height: 1.5; }
+.shop-footer { margin-top: 5px; }
+.shop-footer > span { color: var(--muted); }
+.shop-footer > a { color: var(--leaf-dark); font-size: 10px; font-weight: 600; text-decoration: none; }
+.shop-footer > a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .static-preview { grid-template-columns: auto 1fr; }
+  .static-preview > a { grid-column: 2; }
+}
+
+@media (max-width: 460px) {
+  .header-nav { gap: 8px; }
+  .header-shop-link, .header-link { font-size: 9px; }
+  .header-shop-link { padding: 7px; }
+  .hero-actions { align-items: flex-start; flex-direction: column; }
+  .shop-intro h1 { font-size: 42px; }
+  .static-preview { align-items: start; }
+}
