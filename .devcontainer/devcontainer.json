@@ -1,0 +1,19 @@
+{
+  "name": "Corner Shop Classroom Project",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "postCreateCommand": "npm run build:cobol",
+  "forwardPorts": [4173],
+  "portsAttributes": {
+    "4173": {
+      "label": "Corner Shop",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}

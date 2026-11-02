@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f3eb">
+    <title>Corner Shop</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Corner Shop home"><span class="mark">C</span>corner shop</a>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">The daily<br>cupboard.</h1>
+      </section>
+
+      <div id="connection-status" class="connection-status" role="status" aria-live="polite" hidden></div>
+      <div id="preview-notice" class="preview-notice" hidden></div>
+
+      <section class="sales-summary" aria-label="Shop sales summary">
+        <div class="sales-total"><strong id="items-sold">0</strong><span>Total items sold</span></div>
+        <p>Computed as starting stock minus current stock, across all products.</p>
+      </section>
+
+      <div class="shop-layout">
+        <section class="catalog" aria-labelledby="catalog-title">
+          <div class="section-heading">
+            <div>
+              <h2 id="catalog-title">On the shelf</h2>
+              <span>THREE EVERYDAY FAVORITES</span>
+            </div>
+            <button id="reset-stock" class="reset-button" type="button" disabled>Reset stock</button>
+          </div>
+          <div id="reset-status" class="reset-status" role="status" aria-live="polite"></div>
+          <div id="product-list" class="product-list"></div>
+        </section>
+
+        <aside class="basket" aria-labelledby="basket-title">
+          <div class="basket-heading">
+            <h2 id="basket-title">Your basket</h2>
+            <span id="basket-count" class="basket-count">0</span>
+          </div>
+          <div id="basket-items" class="basket-items"><p class="empty-state">Your basket is empty.</p></div>
+          <div class="basket-total"><span>Estimated total</span><strong id="basket-total">$0.00</strong></div>
+          <button id="place-order" class="order-button" type="button" disabled>Place order <span aria-hidden="true">→</span></button>
+          <p class="basket-footnote">Stock is reserved only after a successful order.</p>
+          <div id="checkout-message" class="checkout-message" role="status" aria-live="polite"></div>
+          <section id="receipt" class="receipt" aria-live="polite" hidden>
+            <div class="receipt-rule"></div>
+            <p class="eyebrow">ORDER CONFIRMED</p>
+            <h3>Thank you.</h3>
+            <div id="receipt-items"></div>
+            <div class="receipt-total"><span>Total</span><strong id="receipt-total"></strong></div>
+          </section>
+        </aside>
+      </div>
+
+      <section class="learning-section" aria-labelledby="learning-title">
+        <p class="eyebrow">01 / COBOL FIRST</p>
+        <h2 id="learning-title">Run the checkout rule on its own</h2>
+        <p class="learning-intro">This small program needs no browser, API, or project setup. Paste it into OnlineGDB, choose COBOL, and run it. Pick a product, then type a quantity when prompted.</p>
+        <div class="lesson-actions">
+          <a href="https://www.onlinegdb.com/online_cobol_compiler" target="_blank" rel="noreferrer">Open OnlineGDB <span aria-hidden="true">↗</span></a>
+          <a href="/lessons/first-order.cbl" download>Download the standalone source</a>
+        </div>
+        <div class="cobol-example">
+          <div class="example-label">FIRST-ORDER.CBL / A TEXT-ONLY SHOP WITH KEYBOARD INPUT</div>
+          <pre><code>       IDENTIFICATION DIVISION.
+       PROGRAM-ID. FIRST-ORDER.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 PRODUCT-CHOICE PIC 9 VALUE ZERO.
+       01 ITEM-NAME PIC X(20) VALUE SPACES.
+       01 UNIT-PRICE-CENTS PIC 9(5) VALUE ZERO.
+       01 STOCK-AVAILABLE PIC 99 VALUE ZERO.
+       01 ORDER-QUANTITY PIC 99 VALUE ZERO.
+       01 ORDER-TOTAL-CENTS PIC 9(7) VALUE ZERO.
+       01 STOCK-LEFT PIC 99 VALUE ZERO.
+         01 ESPRESSO-STOCK PIC 99 VALUE 8.
+         01 MUG-STOCK PIC 99 VALUE 12.
+         01 BEANS-STOCK PIC 99 VALUE 20.
+         01 DISPLAY-ESPRESSO-STOCK PIC Z9.
+         01 DISPLAY-MUG-STOCK PIC Z9.
+         01 DISPLAY-BEANS-STOCK PIC Z9.
+       01 DISPLAY-QUANTITY PIC Z9.
+       01 DISPLAY-TOTAL PIC Z(6)9.
+       01 DISPLAY-STOCK PIC Z9.
+         01 SHOP-ACTIVE PIC X VALUE "Y".
+       PROCEDURE DIVISION.
+           PERFORM UNTIL SHOP-ACTIVE = "N"
+             MOVE ESPRESSO-STOCK TO DISPLAY-ESPRESSO-STOCK
+             MOVE MUG-STOCK TO DISPLAY-MUG-STOCK
+             MOVE BEANS-STOCK TO DISPLAY-BEANS-STOCK
+             DISPLAY "CORNER SHOP"
+             DISPLAY "1. ESPRESSO MACHINE - 18500 CENTS - STOCK "
+               DISPLAY-ESPRESSO-STOCK
+             DISPLAY "2. CERAMIC MUG - 1250 CENTS - STOCK "
+               DISPLAY-MUG-STOCK
+             DISPLAY "3. COFFEE BEANS - 1600 CENTS - STOCK "
+               DISPLAY-BEANS-STOCK
+             MOVE ZERO TO PRODUCT-CHOICE
+             PERFORM UNTIL PRODUCT-CHOICE >= 1
+               AND PRODUCT-CHOICE <= 3
+               DISPLAY "Choose a product (1-3): "
+                 WITH NO ADVANCING
+               ACCEPT PRODUCT-CHOICE
+               IF PRODUCT-CHOICE < 1 OR PRODUCT-CHOICE > 3
+                 DISPLAY "Invalid choice. Enter 1, 2, or 3."
+               END-IF
+             END-PERFORM
+             EVALUATE PRODUCT-CHOICE
+               WHEN 1
+                 MOVE "ESPRESSO MACHINE" TO ITEM-NAME
+                 MOVE 18500 TO UNIT-PRICE-CENTS
+                 MOVE ESPRESSO-STOCK TO STOCK-AVAILABLE
+               WHEN 2
+                 MOVE "CERAMIC MUG" TO ITEM-NAME
+                 MOVE 1250 TO UNIT-PRICE-CENTS
+                 MOVE MUG-STOCK TO STOCK-AVAILABLE
+               WHEN 3
+                 MOVE "COFFEE BEANS" TO ITEM-NAME
+                 MOVE 1600 TO UNIT-PRICE-CENTS
+                 MOVE BEANS-STOCK TO STOCK-AVAILABLE
+             END-EVALUATE
+             IF STOCK-AVAILABLE = ZERO
+               DISPLAY "SOLD OUT. Choose another product."
+             ELSE
+               MOVE ZERO TO ORDER-QUANTITY
+               PERFORM UNTIL ORDER-QUANTITY > ZERO
+                 AND ORDER-QUANTITY <= STOCK-AVAILABLE
+                 DISPLAY "Quantity (max " STOCK-AVAILABLE "): "
+                   WITH NO ADVANCING
+                 ACCEPT ORDER-QUANTITY
+                 IF ORDER-QUANTITY = ZERO
+                   DISPLAY "Enter a quantity greater than zero."
+                 ELSE
+                   IF ORDER-QUANTITY > STOCK-AVAILABLE
+                     DISPLAY "Not enough stock. Try again."
+                   END-IF
+                 END-IF
+               END-PERFORM
+               COMPUTE ORDER-TOTAL-CENTS =
+                 ORDER-QUANTITY * UNIT-PRICE-CENTS
+               COMPUTE STOCK-LEFT =
+                 STOCK-AVAILABLE - ORDER-QUANTITY
+               EVALUATE PRODUCT-CHOICE
+                 WHEN 1
+                   MOVE STOCK-LEFT TO ESPRESSO-STOCK
+                 WHEN 2
+                   MOVE STOCK-LEFT TO MUG-STOCK
+                 WHEN 3
+                   MOVE STOCK-LEFT TO BEANS-STOCK
+               END-EVALUATE
+               MOVE ORDER-QUANTITY TO DISPLAY-QUANTITY
+               MOVE ORDER-TOTAL-CENTS TO DISPLAY-TOTAL
+               MOVE STOCK-LEFT TO DISPLAY-STOCK
+               DISPLAY "ORDER ACCEPTED: " ITEM-NAME
+               DISPLAY "QUANTITY: " DISPLAY-QUANTITY
+               DISPLAY "UNIT PRICE (CENTS): " UNIT-PRICE-CENTS
+               DISPLAY "ORDER TOTAL (CENTS): " DISPLAY-TOTAL
+               DISPLAY "STOCK LEFT: " DISPLAY-STOCK
+             END-IF
+             DISPLAY "Shop again? (Y/N, N exits): "
+               WITH NO ADVANCING
+             ACCEPT SHOP-ACTIVE
+             IF SHOP-ACTIVE NOT = "N"
+               MOVE "Y" TO SHOP-ACTIVE
+             END-IF
+           END-PERFORM
+           DISPLAY "Thanks for visiting Corner Shop."
+           STOP RUN.</code></pre>
+        </div>
+        <div class="expected-output">
+          <span>EXAMPLE SESSION / OVERSOLD ENTRY, RETRY, THEN UPDATED MENU</span>
+          <pre>Choose a product (1-3): 1
+Quantity (max 08): 9
+Not enough stock. Try again.
+Quantity (max 08): 2
+ORDER ACCEPTED: ESPRESSO MACHINE
+QUANTITY:  2
+ORDER TOTAL (CENTS):   37000
+STOCK LEFT:  6
+Shop again? (Y/N, N exits): Y
+CORNER SHOP
+1. ESPRESSO MACHINE - 18500 CENTS - STOCK  6</pre>
+        </div>
+        <h3 class="lesson-subheading">Read it in six pieces</h3>
+        <div class="lesson-points">
+          <p><strong>1. Program and data.</strong> <code>WORKING-STORAGE SECTION</code> keeps stock for all three products. The stock fields live for the full program run, so a sale stays deducted on the next visit to the menu.</p>
+          <p><strong>2. The shop loop.</strong> <code>PERFORM UNTIL SHOP-ACTIVE = "N"</code> repeats the menu and checkout. Enter N to exit; otherwise it returns to the menu.</p>
+          <p><strong>3. Text input.</strong> <code>DISPLAY</code> prints the menu and prompts. <code>ACCEPT</code> reads the product number and quantity typed by the student.</p>
+          <p><strong>4. Product selection.</strong> <code>EVALUATE</code> matches choices 1, 2, or 3, then <code>MOVE</code> selects its name, price, and current stock.</p>
+          <p><strong>5. Quantity retry.</strong> The inner <code>PERFORM UNTIL</code> keeps asking while quantity is zero or larger than stock. An oversold entry does not end the program.</p>
+          <p><strong>6. Calculation and update.</strong> <code>COMPUTE</code> works in cents. A second <code>EVALUATE</code> saves the remaining stock to the selected product before the next menu appears.</p>
+        </div>
+        <aside class="lesson-experiment"><strong>Try it:</strong> order 2 espresso machines, answer Y, then check the menu shows stock 6. Enter 9 to see the quantity prompt retry, then enter 4. The next menu shows stock 2.</aside>
+
+        <div class="lesson-bridge">
+          <p class="eyebrow">02 / CONNECT IT TO THE SHOP</p>
+          <h3>Same rule, real request</h3>
+          <p>The standalone example gets input from the keyboard with <code>ACCEPT</code> and keeps stock in working storage. In the website, the browser sends basket quantities to Node instead. Node passes quantities, prices, and current stock to <code>backend/shop.cbl</code>; COBOL runs the checkout checks and calculations, and the API returns the result to the UI.</p>
+        </div>
+
+        <p class="eyebrow">03 / FOLLOW THE LAYERS</p>
+        <h3 class="lesson-subheading">How this shop works</h3>
+        <p class="learning-intro">Each layer has one clear job.</p>
+        <div class="learning-grid">
+          <article class="learning-step">
+            <span class="step-number">01 / UI</span>
+            <h3>The browser</h3>
+            <p><code>index.html</code>, <code>styles.css</code>, and <code>app.js</code> show products and keep basket quantities. Place order sends those quantities to the API; adding to the basket does not change stock.</p>
+          </article>
+          <article class="learning-step">
+            <span class="step-number">02 / API</span>
+            <h3>The Node bridge</h3>
+            <p><code>server.js</code> receives the order, supplies the current price and stock, and runs the compiled COBOL program. It updates inventory only after COBOL approves the whole order.</p>
+          </article>
+          <article class="learning-step learning-cobol">
+            <span class="step-number">03 / COBOL</span>
+            <h3>The checkout rules</h3>
+            <p><code>backend/shop.cbl</code> uses <code>ACCEPT</code> to read order records, <code>PERFORM VARYING</code> to check each product, <code>COMPUTE</code> for the stock and total, and <code>DISPLAY</code> to return the result. It rejects quantities above available stock.</p>
+            <pre><code>COMPUTE remaining-stock(item-index) =
+    item-stock(item-index) - item-quantity(item-index)
+COMPUTE total-cents = total-cents +
+    item-quantity(item-index) * item-price(item-index)</code></pre>
+            <p>It returns either an error or the new stock and total. The API uses that result for the receipt.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>CORNER SHOP</span><span>UI → API → COBOL</span></footer>
+  </body>
+</html>
