@@ -1,6 +1,6 @@
-# Corner Shop
+# Corner Shop Project
 
-A small classroom storefront that follows the request through three layers:
+The working shop project follows this path:
 
 ```text
 Browser UI → Node.js API → compiled GnuCOBOL checkout
@@ -8,16 +8,27 @@ Browser UI → Node.js API → compiled GnuCOBOL checkout
 
 This is a demo only. It has no payment processing, customer accounts, or personal data. Inventory is held in the running Node process and resets when the server restarts.
 
-## Run in Codespaces
+## Start Here
 
-Open the repository in a Codespace. The dev container installs Node.js 22 and GnuCOBOL, compiles `backend/shop.cbl` after creation, and forwards port `4173`.
+You do not need to install Visual Studio, Node.js, or COBOL on your computer. Work in GitHub Codespaces in your browser.
+
+1. **Make your own copy:** open this repository and click **Fork**. This creates your personal copy. You do not need to run `git pull` or `git clone`.
+2. **Open your copy:** on your fork, click **Code → Codespaces → Create codespace on main**.
+3. **Wait for setup:** Codespaces installs Node.js and GnuCOBOL and compiles the COBOL checkout program automatically.
+4. **Start the shop:** in the Codespaces terminal, run `npm start`.
+5. **Open the website:** select the forwarded port labeled **Corner Shop** or open port `4173` from the Ports tab.
+
+The hosted [lesson](https://emaximus21.github.io/CobolwithUI_Coffeestore/) and [browser shop preview](https://emaximus21.github.io/CobolwithUI_Coffeestore/shop.html) are optional. GitHub Pages cannot run the Node API or COBOL, so use your Codespace for the real checkout.
+
+## If You Edit COBOL
+
+After changing `backend/shop.cbl`, rebuild it before testing:
 
 ```sh
 npm run build:cobol
-npm start
 ```
 
-Open the forwarded port labeled **Corner Shop**. After editing COBOL, run `npm run build:cobol` again before restarting or testing the app. Check the connection at `GET /api/status`; checkout is enabled only when the compiled COBOL program answers its health check.
+Then restart the app with `npm start`. Check `GET /api/status` to confirm that the compiled COBOL program is connected. If `cobc` is missing, use **Codespaces: Rebuild Container** from the Command Palette.
 
 If the initial build says `cobc` is missing, rebuild the Codespace container so `.devcontainer/Dockerfile` can install GnuCOBOL. On Ubuntu, the equivalent install command is `sudo apt-get update && sudo apt-get install -y gnucobol`, followed by `npm run build:cobol`.
 
@@ -48,8 +59,11 @@ Adding an item changes only the basket. Stock changes after a successful checkou
 
 The API and COBOL program exchange one fixed-width input record per catalog product. Each record contains a signed six-digit quantity, eight-digit unit price in cents, and six-digit stock. COBOL returns either an error or the three remaining-stock values and total cents.
 
-## Hosting
+## Project Map
 
-The student lesson and browser shop preview are published from the `gh-pages` branch. Open `https://emaximus21.github.io/CobolwithUI_Coffeestore/` for the lesson or `https://emaximus21.github.io/CobolwithUI_Coffeestore/shop.html` to try the shop UI.
+The default `main` branch is the working app. The separate `gh-pages` branch publishes the lesson site, so its files do not appear in the Codespaces project workspace.
 
-The default `main` branch contains the Codespaces project only. The `gh-pages` branch contains the learning site, keeping the project workspace uncluttered in the same repository. The Pages shop is a browser-only JavaScript preview; GitHub Pages does not run the Node API or GnuCOBOL process. For real COBOL checkout, students should fork this repository and open `main` in Codespaces. A GitHub account is required, and Codespaces usage limits may apply.
+- **UI:** `index.html`, `styles.css`, and `app.js`
+- **API:** `server.js`
+- **COBOL checkout:** `backend/shop.cbl`
+- **Codespaces setup:** `.devcontainer/`
